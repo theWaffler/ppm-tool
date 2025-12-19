@@ -118,3 +118,36 @@ button.delete {
   border-top: 1px solid var(--border);
   font-size: 12px;
 }
+
+/* ---------- spec range chart ---------- */
+
+.range-bar {
+  position: relative;
+  height: 14px;
+  background: #1b2230;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.range-fill {
+  position: absolute;
+  height: 100%;
+  background: #2a6df4;
+}
+
+.range-opt {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 22px;
+  background: #4caf50;
+}
+
+.range-labels {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+

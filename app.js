@@ -23,6 +23,36 @@
     return Math.round(val * OZ_GAL_TO_PPM);
   }
 
+  function createRangeBar(low, opt, high) {
+    const span = high - low;
+
+    const wrapper = document.createElement("div");
+
+    const bar = document.createElement("div");
+    bar.className = "range-bar";
+
+    const fill = document.createElement("div");
+    fill.className = "range-fill";
+    fill.style.left = "0%";
+    fill.style.width = "100%";
+
+    const optMarker = document.createElement("div");
+    optMarker.className = "range-opt";
+    optMarker.style.left = `${((opt - low) / span) * 100}%`;
+
+    bar.appendChild(fill);
+    bar.appendChild(optMarker);
+
+    const labels = document.createElement("div");
+    labels.className = "range-labels";
+    labels.innerHTML = `<span>${low}</span><span>${high}</span>`;
+
+    wrapper.appendChild(bar);
+    wrapper.appendChild(labels);
+
+    return wrapper;
+  }
+
   function addRow() {
     const tr = document.createElement("tr");
 
@@ -45,11 +75,13 @@
     const lowPpmTd = document.createElement("td");
     const optPpmTd = document.createElement("td");
     const highPpmTd = document.createElement("td");
-
     [lowPpmTd, optPpmTd, highPpmTd].forEach(td => td.className = "readonly");
+
+    const rangeTd = document.createElement("td");
 
     function update() {
       const spec = CHEMICAL_SPECS[select.value];
+
       lowTd.textContent = spec.low;
       optTd.textContent = spec.opt;
       highTd.textContent = spec.high;
@@ -57,6 +89,9 @@
       lowPpmTd.textContent = ozToPpm(spec.low);
       optPpmTd.textContent = ozToPpm(spec.opt);
       highPpmTd.textContent = ozToPpm(spec.high);
+
+      rangeTd.innerHTML = "";
+      rangeTd.appendChild(createRangeBar(spec.low, spec.opt, spec.high));
     }
 
     select.addEventListener("change", update);
@@ -77,6 +112,7 @@
       lowPpmTd,
       optPpmTd,
       highPpmTd,
+      rangeTd,
       delTd
     );
 
