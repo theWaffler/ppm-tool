@@ -1,8 +1,5 @@
 # Conversion tool
 
-## Usage
-https://thewaffler.github.io/ppm-tool/
-
 ## Purpose
 - This calculator is for **mass based chemistry**
 - Suitable for **Nickel, Copper, Chrome salts, Boric acid**, etc
