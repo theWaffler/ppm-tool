@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bath Concentration Tool (oz/gal → ppm)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1>Bath Concentration Tool</h1>
+      <p class="sub">oz/gal → ppm (mg/L). Mass-based chemicals only.</p>
+    </div>
+    <div class="meta">
+      <span id="appVersion">v0.1</span>
+      <span id="buildDate"></span>
+    </div>
+  </header>
+
+  <div class="banner">
+    WARNING: Do not use for %v, ml/AH, or acids specified as %vol. This tool is for oz/gal only.
+  </div>
+
+  <main class="container">
+    <section class="card">
+      <h2>Inputs</h2>
+      <p>This is the deployment verification page. Next step we’ll add the table + calculations.</p>
+      <button id="testButton" class="btn">Test Button</button>
+      <div id="testOutput" class="output" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>Planned Features</h2>
+      <ul>
+        <li>Editable table: Chemical + LOW/OPT/HIGH (oz/gal)</li>
+        <li>Auto-calculated ppm columns</li>
+        <li>Out-of-range highlighting (based on spec bands)</li>
+        <li>Report generation: Excel + PDF + printable HTML + CSV</li>
+        <li>Optional elemental ppm (Ni, Cu, Cr³⁺) using molecular weights</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Local-only calculations. No uploads. No backend.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
