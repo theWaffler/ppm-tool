@@ -23,8 +23,8 @@
     return Math.round(val * OZ_GAL_TO_PPM);
   }
 
-  function createRangeBar(low, opt, high) {
-    const span = high - low;
+  function createRangeBar(spec, measuredPpm) {
+    const span = spec.high - spec.low;
 
     const wrapper = document.createElement("div");
 
@@ -33,19 +33,27 @@
 
     const fill = document.createElement("div");
     fill.className = "range-fill";
-    fill.style.left = "0%";
-    fill.style.width = "100%";
 
     const optMarker = document.createElement("div");
     optMarker.className = "range-opt";
-    optMarker.style.left = `${((opt - low) / span) * 100}%`;
+    optMarker.style.left = `${((spec.opt - spec.low) / span) * 100}%`;
 
     bar.appendChild(fill);
     bar.appendChild(optMarker);
 
+    if (!isNaN(measuredPpm)) {
+      const m = document.createElement("div");
+      m.className = "range-measured";
+      let pos = (measuredPpm - ozToPpm(spec.low)) /
+                (ozToPpm(spec.high) - ozToPpm(spec.low));
+      pos = Math.max(0, Math.min(1, pos));
+      m.style.left = `${pos * 100}%`;
+      bar.appendChild(m);
+    }
+
     const labels = document.createElement("div");
     labels.className = "range-labels";
-    labels.innerHTML = `<span>${low}</span><span>${high}</span>`;
+    labels.innerHTML = `<span>${spec.low}</span><span>${spec.high}</span>`;
 
     wrapper.appendChild(bar);
     wrapper.appendChild(labels);
@@ -77,6 +85,15 @@
     const highPpmTd = document.createElement("td");
     [lowPpmTd, optPpmTd, highPpmTd].forEach(td => td.className = "readonly");
 
+    const measuredTd = document.createElement("td");
+    const measuredInput = document.createElement("input");
+    measuredInput.type = "number";
+    measuredInput.step = "any";
+    measuredTd.appendChild(measuredInput);
+
+    const statusTd = document.createElement("td");
+    statusTd.className = "status";
+
     const rangeTd = document.createElement("td");
 
     function update() {
@@ -86,15 +103,35 @@
       optTd.textContent = spec.opt;
       highTd.textContent = spec.high;
 
-      lowPpmTd.textContent = ozToPpm(spec.low);
-      optPpmTd.textContent = ozToPpm(spec.opt);
-      highPpmTd.textContent = ozToPpm(spec.high);
+      const lowPpm = ozToPpm(spec.low);
+      const optPpm = ozToPpm(spec.opt);
+      const highPpm = ozToPpm(spec.high);
+
+      lowPpmTd.textContent = lowPpm;
+      optPpmTd.textContent = optPpm;
+      highPpmTd.textContent = highPpm;
+
+      const measured = parseFloat(measuredInput.value);
+
+      if (!isNaN(measured)) {
+        if (measured >= lowPpm && measured <= highPpm) {
+          statusTd.textContent = "IN RANGE";
+          statusTd.className = "status ok";
+        } else {
+          statusTd.textContent = "OUT OF RANGE";
+          statusTd.className = "status bad";
+        }
+      } else {
+        statusTd.textContent = "";
+        statusTd.className = "status";
+      }
 
       rangeTd.innerHTML = "";
-      rangeTd.appendChild(createRangeBar(spec.low, spec.opt, spec.high));
+      rangeTd.appendChild(createRangeBar(spec, measured));
     }
 
     select.addEventListener("change", update);
+    measuredInput.addEventListener("input", update);
     update();
 
     const delTd = document.createElement("td");
@@ -112,6 +149,8 @@
       lowPpmTd,
       optPpmTd,
       highPpmTd,
+      measuredTd,
+      statusTd,
       rangeTd,
       delTd
     );

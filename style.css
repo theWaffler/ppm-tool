@@ -151,3 +151,59 @@ button.delete {
   margin-top: 2px;
 }
 
+/* ---------- status ---------- */
+
+.status {
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+.status.ok {
+  color: #4caf50;
+}
+
+.status.bad {
+  color: #ff5252;
+}
+
+/* ---------- spec range markers ---------- */
+
+.range-bar {
+  position: relative;
+  height: 14px;
+  background: #1b2230;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.range-fill {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #2a6df4;
+}
+
+.range-opt {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 22px;
+  background: #4caf50;
+}
+
+.range-measured {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 22px;
+  background: #ff5252;
+}
+
+.range-labels {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
