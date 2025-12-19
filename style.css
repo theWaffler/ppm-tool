@@ -135,6 +135,22 @@ td select {
   font-family: var(--mono);
 }
 
+td select {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  padding: 4px 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+td select:focus {
+  outline: 2px solid var(--btn);
+  outline-offset: 2px;
+}
+
 td.readonly {
   color: var(--muted);
   font-family: var(--mono);
