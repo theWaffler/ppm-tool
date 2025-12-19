@@ -20,9 +20,9 @@
   const addRowBtn = document.getElementById("addRow");
   document.getElementById("buildDate").textContent = new Date().toISOString();
 
-  function ozToPpm(oz) {
-    if (isNaN(oz)) return "";
-    return Math.round(oz * OZ_GAL_TO_PPM);
+  function ozGalToPpm(ozGal) {
+    if (isNaN(ozGal)) return "";
+    return Math.round(ozGal * OZ_GAL_TO_PPM);
   }
 
   function addRow() {
@@ -31,32 +31,35 @@
     // Chemical dropdown
     const chemTd = document.createElement("td");
     const select = document.createElement("select");
+
     Object.keys(CHEMICAL_SPECS).forEach(name => {
-      const o = document.createElement("option");
-      o.value = name;
-      o.textContent = name;
-      select.appendChild(o);
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
     });
+
     chemTd.appendChild(select);
 
-    // Spec cells
+    // Spec oz/gal
     const lowTd = document.createElement("td");
     const optTd = document.createElement("td");
     const highTd = document.createElement("td");
 
+    // Spec ppm
     const lowPpmTd = document.createElement("td");
     const optPpmTd = document.createElement("td");
     const highPpmTd = document.createElement("td");
     [lowPpmTd, optPpmTd, highPpmTd].forEach(td => td.className = "readonly");
 
-    // Measured input (oz/gal)
+    // Measured oz/gal (INPUT)
     const measOzTd = document.createElement("td");
     const measOzInput = document.createElement("input");
     measOzInput.type = "number";
     measOzInput.step = "any";
     measOzTd.appendChild(measOzInput);
 
-    // Measured ppm
+    // Measured ppm (DERIVED)
     const measPpmTd = document.createElement("td");
     measPpmTd.className = "readonly";
 
@@ -67,20 +70,23 @@
     function update() {
       const spec = CHEMICAL_SPECS[select.value];
 
+      // Spec oz/gal
       lowTd.textContent = spec.low;
       optTd.textContent = spec.opt;
       highTd.textContent = spec.high;
 
-      const lowPpm = ozToPpm(spec.low);
-      const optPpm = ozToPpm(spec.opt);
-      const highPpm = ozToPpm(spec.high);
+      // Spec ppm
+      const lowPpm = ozGalToPpm(spec.low);
+      const optPpm = ozGalToPpm(spec.opt);
+      const highPpm = ozGalToPpm(spec.high);
 
       lowPpmTd.textContent = lowPpm;
       optPpmTd.textContent = optPpm;
       highPpmTd.textContent = highPpm;
 
+      // Measured
       const measuredOz = parseFloat(measOzInput.value);
-      const measuredPpm = ozToPpm(measuredOz);
+      const measuredPpm = ozGalToPpm(measuredOz);
 
       measPpmTd.textContent = measuredPpm;
 
