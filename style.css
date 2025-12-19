@@ -7,11 +7,15 @@
   --danger: #b00020;
   --btn: #2a6df4;
   --btnHover: #1f57c7;
+  --ok: #4caf50;
+  --bad: #ff5252;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
           "Liberation Mono", "Courier New", monospace;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -20,34 +24,49 @@ body {
   color: var(--fg);
 }
 
+/* ---------- header ---------- */
+
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
   border-bottom: 1px solid var(--border);
 }
 
-.sub { color: var(--muted); margin: 0; }
+.header h1 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+}
 
-.meta {
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 12px;
+.sub {
+  margin: 0;
   color: var(--muted);
 }
 
+.meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---------- warning banner ---------- */
+
 .banner {
   background: var(--danger);
-  color: white;
+  color: #fff;
   padding: 10px 20px;
   font-weight: 700;
   font-size: 13px;
 }
 
+/* ---------- layout ---------- */
+
 .container {
   padding: 20px;
-  max-width: 1100px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card {
@@ -57,30 +76,45 @@ body {
   padding: 16px;
 }
 
+.card h2 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+}
+
+/* ---------- buttons ---------- */
+
+.table-actions {
+  margin-bottom: 10px;
+}
+
 .btn {
   background: var(--btn);
-  border: 0;
-  color: white;
+  border: none;
+  color: #fff;
   padding: 10px 14px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
 }
 
-.btn:hover { background: var(--btnHover); }
-
-.table-actions {
-  margin-bottom: 10px;
+.btn:hover {
+  background: var(--btnHover);
 }
 
-.table-wrap { overflow-x: auto; }
+/* ---------- table ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 14px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid var(--border);
   padding: 8px;
   text-align: center;
@@ -88,67 +122,22 @@ th, td {
 
 th {
   background: #1b2230;
+  font-weight: 700;
+}
+
+td input,
+td select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  text-align: center;
+  font-family: var(--mono);
 }
 
 td.readonly {
   color: var(--muted);
   font-family: var(--mono);
-}
-
-select {
-  width: 100%;
-  background: transparent;
-  color: var(--fg);
-  border: none;
-  font-family: inherit;
-}
-
-button.delete {
-  background: none;
-  border: none;
-  color: #ff6b6b;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.footer {
-  padding: 16px;
-  text-align: center;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-}
-
-/* ---------- spec range chart ---------- */
-
-.range-bar {
-  position: relative;
-  height: 14px;
-  background: #1b2230;
-  border-radius: 7px;
-  overflow: hidden;
-}
-
-.range-fill {
-  position: absolute;
-  height: 100%;
-  background: #2a6df4;
-}
-
-.range-opt {
-  position: absolute;
-  top: -4px;
-  width: 2px;
-  height: 22px;
-  background: #4caf50;
-}
-
-.range-labels {
-  font-size: 10px;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2px;
 }
 
 /* ---------- status ---------- */
@@ -159,51 +148,29 @@ button.delete {
 }
 
 .status.ok {
-  color: #4caf50;
+  color: var(--ok);
 }
 
 .status.bad {
-  color: #ff5252;
+  color: var(--bad);
 }
 
-/* ---------- spec range markers ---------- */
+/* ---------- delete button ---------- */
 
-.range-bar {
-  position: relative;
-  height: 14px;
-  background: #1b2230;
-  border-radius: 7px;
-  overflow: hidden;
+button.delete {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.range-fill {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: #2a6df4;
-}
+/* ---------- footer ---------- */
 
-.range-opt {
-  position: absolute;
-  top: -4px;
-  width: 2px;
-  height: 22px;
-  background: #4caf50;
-}
-
-.range-measured {
-  position: absolute;
-  top: -4px;
-  width: 2px;
-  height: 22px;
-  background: #ff5252;
-}
-
-.range-labels {
-  font-size: 10px;
+.footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
   color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2px;
+  text-align: center;
+  font-size: 12px;
 }
-

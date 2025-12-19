@@ -1,5 +1,8 @@
 # BATCH Conversion tool (oz/lb -> ppm)
 
+## Usage
+https://thewaffler.github.io/ppm-tool/
+
 ## Purpose
 - This calculator is for **mass based chemistry**
 - Suitable for **Nickel, Copper, Chrome salts, Boric acid**, etc

@@ -10,17 +10,16 @@
   <header class="header">
     <div>
       <h1>Bath Concentration Tool</h1>
-      <p class="sub">oz/gal → ppm (mg/L). Mass-based chemicals only.</p>
+      <p class="sub">Convert measured oz/gal to ppm and evaluate against specs</p>
     </div>
     <div class="meta">
-      <span>v0.4</span>
+      <span>v0.5</span>
       <span id="buildDate"></span>
     </div>
   </header>
 
   <div class="banner">
-    WARNING: Do not use for %v, ml/AH, or acids specified as %vol.
-    This tool is for oz/gal only.
+    WARNING: Mass-based oz/gal only. Do NOT use for %v, ml/AH, or %vol additives.
   </div>
 
   <main class="container">
@@ -36,15 +35,19 @@
           <thead>
             <tr>
               <th>Chemical</th>
+
               <th>LOW (oz/gal)</th>
               <th>OPT (oz/gal)</th>
               <th>HIGH (oz/gal)</th>
+
               <th>LOW (ppm)</th>
               <th>OPT (ppm)</th>
               <th>HIGH (ppm)</th>
+
+              <th>Measured (oz/gal)</th>
               <th>Measured (ppm)</th>
               <th>Status</th>
-              <th>Spec Range</th>
+
               <th></th>
             </tr>
           </thead>
