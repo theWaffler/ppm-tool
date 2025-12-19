@@ -7,7 +7,8 @@
   --danger: #b00020;
   --btn: #2a6df4;
   --btnHover: #1f57c7;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -68,8 +69,15 @@ h1 { margin: 0 0 6px 0; font-size: 20px; }
   padding: 16px;
 }
 
-.card h2 { margin: 0 0 10px 0; font-size: 16px; }
-.card p, .card li { color: var(--muted); line-height: 1.4; }
+.card h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.card li {
+  color: var(--muted);
+  line-height: 1.4;
+}
 
 .btn {
   background: var(--btn);
@@ -83,20 +91,59 @@ h1 { margin: 0 0 6px 0; font-size: 20px; }
 
 .btn:hover { background: var(--btnHover); }
 
-.output {
-  margin-top: 12px;
-  padding: 10px;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
-  font-family: var(--mono);
-  color: var(--fg);
-  min-height: 42px;
-}
-
 .footer {
   padding: 18px 20px;
   border-top: 1px solid var(--border);
   color: var(--muted);
   text-align: center;
   font-size: 12px;
+}
+
+/* ---------- table ---------- */
+
+.table-actions {
+  margin-bottom: 10px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background: #1b2230;
+  font-weight: 700;
+}
+
+td input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--fg);
+  text-align: center;
+  font-family: var(--mono);
+}
+
+td.readonly {
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+button.delete {
+  background: transparent;
+  color: #ff6b6b;
+  border: 0;
+  font-weight: 700;
+  cursor: pointer;
 }

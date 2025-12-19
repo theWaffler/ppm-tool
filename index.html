@@ -19,31 +19,49 @@
   </header>
 
   <div class="banner">
-    WARNING: Do not use for %v, ml/AH, or acids specified as %vol. This tool is for oz/gal only.
+    WARNING: Do not use for %v, ml/AH, or acids specified as %vol.
+    This tool is for oz/gal only.
   </div>
 
   <main class="container">
     <section class="card">
-      <h2>Inputs</h2>
-      <p>This is the deployment verification page. Next step we’ll add the table + calculations.</p>
-      <button id="testButton" class="btn">Test Button</button>
-      <div id="testOutput" class="output" aria-live="polite"></div>
+      <h2>Bath Chemistry</h2>
+
+      <div class="table-actions">
+        <button id="addRow" class="btn">Add Chemical</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="chemTable">
+          <thead>
+            <tr>
+              <th>Chemical</th>
+              <th>LOW (oz/gal)</th>
+              <th>OPT (oz/gal)</th>
+              <th>HIGH (oz/gal)</th>
+              <th>LOW (ppm)</th>
+              <th>OPT (ppm)</th>
+              <th>HIGH (ppm)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card">
       <h2>Planned Features</h2>
       <ul>
-        <li>Editable table: Chemical + LOW/OPT/HIGH (oz/gal)</li>
-        <li>Auto-calculated ppm columns</li>
         <li>Out-of-range highlighting (based on spec bands)</li>
         <li>Report generation: Excel + PDF + printable HTML + CSV</li>
-        <li>Optional elemental ppm (Ni, Cu, Cr³⁺) using molecular weights</li>
+        <li>Optional elemental ppm (Ni, Cu, Cr³⁺)</li>
       </ul>
     </section>
   </main>
 
   <footer class="footer">
-    <span>Local-only calculations. No uploads. No backend.</span>
+    Local-only calculations. No uploads. No backend.
   </footer>
 
   <script src="app.js"></script>
