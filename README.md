@@ -25,8 +25,7 @@ Derived from:
 
 
 ## Important Safety Warning
-
-⚠️ **Do NOT use this tool for:**
+**Do NOT use this tool for:**
 - %vol or %v additives
 - ml or ml/AH additions
 - Acids specified as %vol
