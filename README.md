@@ -1,4 +1,4 @@
-# BATCH Concentration tool (oz/lb -> ppm)
+# BATCH Conversion tool (oz/lb -> ppm)
 
 ## Purpose
 - This calculator is for **mass based chemistry**
