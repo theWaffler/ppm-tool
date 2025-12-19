@@ -1,61 +1,66 @@
 (() => {
-  // ---------------- constants ----------------
   const OZ_GAL_TO_PPM = (28.3495 * 1000) / 3.78541;
 
-  // ---------------- elements ----------------
+  const CHEMICAL_SPECS = {
+    "Nickel Sulfate (Bright Nickel)": { low: 30, opt: 40, high: 45 },
+    "Nickel Chloride (Bright Nickel)": { low: 10, opt: 12, high: 15 },
+    "Boric Acid (Nickel Baths)": { low: 5, opt: 7, high: 8 },
+
+    "Nickel Sulfate (Satin Nickel)": { low: 24, opt: 35, high: 45 },
+    "Nickel Chloride (Satin Nickel)": { low: 4, opt: 5, high: 6 },
+    "Boric Acid (Satin Nickel)": { low: 6, opt: 7.5, high: 8 },
+
+    "Copper Sulfate (Acid Copper)": { low: 26.4, opt: 32.0, high: 37.0 },
+
+    "Tri-Chrome +3": { low: 3.2, opt: 3.6, high: 3.8 }
+  };
+
   const tableBody = document.querySelector("#chemTable tbody");
   const addRowBtn = document.getElementById("addRow");
-  const buildDateEl = document.getElementById("buildDate");
+  document.getElementById("buildDate").textContent = new Date().toISOString();
 
-  buildDateEl.textContent = new Date().toISOString();
-
-  // ---------------- helpers ----------------
   function ozToPpm(val) {
-    const n = parseFloat(val);
-    if (isNaN(n)) return "";
-    return Math.round(n * OZ_GAL_TO_PPM);
+    return Math.round(val * OZ_GAL_TO_PPM);
   }
 
-  function createCellInput(onInput) {
-    const td = document.createElement("td");
-    const input = document.createElement("input");
-    input.type = "number";
-    input.step = "any";
-    input.addEventListener("input", onInput);
-    td.appendChild(input);
-    return td;
-  }
-
-  function createReadonlyCell() {
-    const td = document.createElement("td");
-    td.className = "readonly";
-    return td;
-  }
-
-  // ---------------- row creation ----------------
   function addRow() {
     const tr = document.createElement("tr");
 
     const chemTd = document.createElement("td");
-    const chemInput = document.createElement("input");
-    chemInput.placeholder = "Chemical name";
-    chemTd.appendChild(chemInput);
+    const select = document.createElement("select");
 
-    const lowPpmTd = createReadonlyCell();
-    const optPpmTd = createReadonlyCell();
-    const highPpmTd = createReadonlyCell();
-
-    const lowTd = createCellInput(() => {
-      lowPpmTd.textContent = ozToPpm(lowTd.firstChild.value);
+    Object.keys(CHEMICAL_SPECS).forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
     });
 
-    const optTd = createCellInput(() => {
-      optPpmTd.textContent = ozToPpm(optTd.firstChild.value);
-    });
+    chemTd.appendChild(select);
 
-    const highTd = createCellInput(() => {
-      highPpmTd.textContent = ozToPpm(highTd.firstChild.value);
-    });
+    const lowTd = document.createElement("td");
+    const optTd = document.createElement("td");
+    const highTd = document.createElement("td");
+
+    const lowPpmTd = document.createElement("td");
+    const optPpmTd = document.createElement("td");
+    const highPpmTd = document.createElement("td");
+
+    [lowPpmTd, optPpmTd, highPpmTd].forEach(td => td.className = "readonly");
+
+    function update() {
+      const spec = CHEMICAL_SPECS[select.value];
+      lowTd.textContent = spec.low;
+      optTd.textContent = spec.opt;
+      highTd.textContent = spec.high;
+
+      lowPpmTd.textContent = ozToPpm(spec.low);
+      optPpmTd.textContent = ozToPpm(spec.opt);
+      highPpmTd.textContent = ozToPpm(spec.high);
+    }
+
+    select.addEventListener("change", update);
+    update();
 
     const delTd = document.createElement("td");
     const delBtn = document.createElement("button");
@@ -78,9 +83,6 @@
     tableBody.appendChild(tr);
   }
 
-  // ---------------- events ----------------
   addRowBtn.addEventListener("click", addRow);
-
-  // start with one empty row
   addRow();
 })();
