@@ -6,7 +6,7 @@
 - Capable of generating reports
 
 ### Inputs
-- **oz/lb** 
+- **oz/gal** 
 
 ### Output
 - **ppm (mg/L)**
