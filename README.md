@@ -1,4 +1,4 @@
-# BATCH Conversion tool (oz/lb -> ppm)
+# Conversion tool
 
 ## Usage
 https://thewaffler.github.io/ppm-tool/
