@@ -13,7 +13,11 @@
 
     "Copper Sulfate (Acid Copper)": { low: 26.4, opt: 32.0, high: 37.0 },
 
-    "Tri-Chrome +3": { low: 3.2, opt: 3.6, high: 3.8 }
+    "Tri-Chrome +3": { low: 3.2, opt: 3.6, high: 3.8 },
+
+    "Ni Metal (Dull Nickel)": { low: 7.0, opt: 10.5, high: 14.0 },
+    "Ni Metal (Bright Nickel)": { low: 7.0, opt: 10.5, high: 14.0 },
+    "Ni Metal (Nickel Strike)": { low: 4.9, opt: 6.15, high: 7.4 }
   };
 
   const tableBody = document.querySelector("#chemTable tbody");
